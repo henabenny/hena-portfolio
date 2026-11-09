@@ -11,7 +11,23 @@ import React, { useEffect, useState, useRef } from 'react';
  */
 export default function HenaCharacter({ isZoomed = false }) {
   const [pupilOffset, setPupilOffset] = useState({ x: 0, y: 0 });
+  const [isBlinking, setIsBlinking] = useState(false);
   const headRef = useRef(null);
+
+  useEffect(() => {
+    let timeoutId;
+    const triggerBlink = () => {
+      setIsBlinking(true);
+      setTimeout(() => {
+        setIsBlinking(false);
+        const nextBlink = 3200 + Math.random() * 3200;
+        timeoutId = setTimeout(triggerBlink, nextBlink);
+      }, 150);
+    };
+
+    timeoutId = setTimeout(triggerBlink, 2800);
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -254,40 +270,62 @@ export default function HenaCharacter({ isZoomed = false }) {
 
           {/* Left Eye */}
           <g id="left-eye">
-            <ellipse cx="218" cy="230" rx="14" ry="16" fill="#FFFFFF" stroke="#261F36" strokeWidth="3.5" />
+            <ellipse
+              cx="218"
+              cy="230"
+              rx="14"
+              ry={isBlinking ? 1.5 : 16}
+              fill={isBlinking ? "#261F36" : "#FFFFFF"}
+              stroke="#261F36"
+              strokeWidth="3.5"
+            />
             {/* Dynamic Tracking Pupil */}
-            <circle
-              cx={218 + pupilOffset.x}
-              cy={230 + pupilOffset.y}
-              r="7.5"
-              fill="#261F36"
-            />
-            {/* Catchlight Glint */}
-            <circle
-              cx={216 + pupilOffset.x}
-              cy={227 + pupilOffset.y}
-              r="2.5"
-              fill="#FFFFFF"
-            />
+            {!isBlinking && (
+              <>
+                <circle
+                  cx={218 + pupilOffset.x}
+                  cy={230 + pupilOffset.y}
+                  r="7.5"
+                  fill="#261F36"
+                />
+                <circle
+                  cx={216 + pupilOffset.x}
+                  cy={227 + pupilOffset.y}
+                  r="2.5"
+                  fill="#FFFFFF"
+                />
+              </>
+            )}
           </g>
 
           {/* Right Eye */}
           <g id="right-eye">
-            <ellipse cx="282" cy="230" rx="14" ry="16" fill="#FFFFFF" stroke="#261F36" strokeWidth="3.5" />
+            <ellipse
+              cx="282"
+              cy="230"
+              rx="14"
+              ry={isBlinking ? 1.5 : 16}
+              fill={isBlinking ? "#261F36" : "#FFFFFF"}
+              stroke="#261F36"
+              strokeWidth="3.5"
+            />
             {/* Dynamic Tracking Pupil */}
-            <circle
-              cx={282 + pupilOffset.x}
-              cy={230 + pupilOffset.y}
-              r="7.5"
-              fill="#261F36"
-            />
-            {/* Catchlight Glint */}
-            <circle
-              cx={280 + pupilOffset.x}
-              cy={227 + pupilOffset.y}
-              r="2.5"
-              fill="#FFFFFF"
-            />
+            {!isBlinking && (
+              <>
+                <circle
+                  cx={282 + pupilOffset.x}
+                  cy={230 + pupilOffset.y}
+                  r="7.5"
+                  fill="#261F36"
+                />
+                <circle
+                  cx={280 + pupilOffset.x}
+                  cy={227 + pupilOffset.y}
+                  r="2.5"
+                  fill="#FFFFFF"
+                />
+              </>
+            )}
           </g>
 
           {/* Cute Nose */}

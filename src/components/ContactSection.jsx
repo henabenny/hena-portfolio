@@ -11,6 +11,8 @@ import {
   Rocket,
   MessageSquare,
   Sparkles,
+  Copy,
+  Check,
 } from 'lucide-react';
 
 const socialIcons = {
@@ -25,6 +27,16 @@ export default function ContactSection() {
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState(false);
+
+  const handleCopyEmail = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    navigator.clipboard.writeText(personalData.contact.email);
+    setCopiedEmail(true);
+    soundManager.playChirp();
+    setTimeout(() => setCopiedEmail(false), 2400);
+  };
 
   const validate = () => {
     const newErrors = {};
@@ -106,18 +118,41 @@ export default function ContactSection() {
               </p>
 
               <div className="space-y-4">
-                <a
-                  href={`mailto:${personalData.contact.email}`}
-                  className="flex items-center gap-3 p-3.5 rounded-2xl bg-[#3B3355]/60 hover:bg-[#F7F08A] hover:text-[#261F36] border border-[#8E7CC3]/30 transition-all group"
+                <div
+                  className="flex items-center justify-between p-3.5 rounded-2xl bg-[#3B3355]/60 hover:bg-[#3B3355]/90 border border-[#8E7CC3]/30 transition-all group"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-[#8E7CC3] group-hover:bg-[#261F36] text-[#261F36] group-hover:text-[#F7F08A] flex items-center justify-center transition-colors">
-                    <Mail size={18} />
-                  </div>
-                  <div>
-                    <span className="font-condensed text-xs uppercase text-[#B9A8F0] block">Personal Email</span>
-                    <span className="font-sans text-xs sm:text-sm font-semibold">{personalData.contact.email}</span>
-                  </div>
-                </a>
+                  <a
+                    href={`mailto:${personalData.contact.email}`}
+                    className="flex items-center gap-3 overflow-hidden text-left"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-[#8E7CC3] group-hover:bg-[#F7F08A] text-[#261F36] flex items-center justify-center transition-colors shrink-0">
+                      <Mail size={18} />
+                    </div>
+                    <div className="truncate">
+                      <span className="font-condensed text-xs uppercase text-[#B9A8F0] block">Personal Email</span>
+                      <span className="font-sans text-xs sm:text-sm font-semibold text-[#F2EFEA] hover:text-[#F7F08A] truncate transition-colors">
+                        {personalData.contact.email}
+                      </span>
+                    </div>
+                  </a>
+
+                  {/* Copy Button */}
+                  <button
+                    type="button"
+                    onClick={handleCopyEmail}
+                    className="p-2 rounded-xl bg-[#261F36] hover:bg-[#F7F08A] text-[#D8CCE6] hover:text-[#261F36] border border-[#8E7CC3]/40 transition-colors ml-2 shrink-0 cursor-pointer"
+                    title="Copy email to clipboard"
+                    aria-label="Copy email address"
+                  >
+                    {copiedEmail ? (
+                      <span className="flex items-center gap-1 text-[11px] font-mono font-bold text-emerald-400">
+                        <Check size={14} /> Copied!
+                      </span>
+                    ) : (
+                      <Copy size={15} />
+                    )}
+                  </button>
+                </div>
 
                 <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-[#3B3355]/60 border border-[#8E7CC3]/30">
                   <div className="w-10 h-10 rounded-xl bg-[#8E7CC3] text-[#261F36] flex items-center justify-center">
