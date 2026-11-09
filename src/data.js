@@ -31,12 +31,14 @@ export const personalData = {
     subtitle: "A first-year explorer with a hunger for artificial intelligence and expressive web experiences.",
     bioParagraphs: [
       "Hey! I'm Hena Benny, a first-year Computer Science and Engineering (Artificial Intelligence) undergraduate at Thejus College of Engineering in Thrissur, Kerala.",
-      "Ever since writing my first lines of code, I've been fascinated by the intersection where human creativity meets intelligent algorithms. Right now, I spend my days mastering data structures, exploring neural network basics, experimenting with modern web tools, and questioning how software can feel more alive.",
+      "Having come from a VHSE Computer Science (Junior Software Developer - JSD) background, I built a strong hands-on foundation in software engineering, practical coding, and web technologies right from vocational higher secondary school.",
+      "Now in B.Tech CSE (AI), I spend my days mastering data structures, exploring neural network basics, experimenting with modern web tools, and questioning how software can feel more intuitive, playful, and alive.",
       "When I step away from my IDE, you'll probably find me sketching UI concepts in Figma, sipping hot chai, listening to indie playlists, or brainstorming hackathon ideas with friends."
     ],
     detailsList: [
       { label: "Degree", value: "B.Tech CSE (Artificial Intelligence)" },
       { label: "Institution", value: "Thejus College of Engineering, Thrissur" },
+      { label: "Foundation", value: "VHSE Computer Science (JSD)" },
       { label: "Location", value: "Kerala, India 🌴" },
       { label: "Current Focus", value: "Machine Learning Foundations & Interactive Web" },
       { label: "Availability", value: "Summer 2026 Internships & Open Source" }
@@ -180,11 +182,11 @@ export const personalData = {
   journey: [
     {
       period: "2022 — 2024",
-      title: "Higher Secondary (Bio-Maths & Computer Science)",
-      organization: "Kerala State Higher Secondary Board",
-      badge: "The Spark",
-      description: "Wrote my very first Python scripts, built miniature CLI calculators, and became obsessed with how algorithms solve real world puzzles. Decided then that artificial intelligence would be my career path.",
-      skillsAcquired: ["Python basics", "Boolean Logic", "Mathematical foundations", "Algorithm analysis"]
+      title: "VHSE Computer Science (Junior Software Developer - JSD)",
+      organization: "Vocational Higher Secondary Education (VHSE), Kerala",
+      badge: "The Foundation",
+      description: "Completed vocational higher secondary education in Computer Science as a trained Junior Software Developer (JSD). Gained rigorous early hands-on grounding in software engineering fundamentals, Python & C programming, web technologies, databases, and practical software labs before stepping into B.Tech CSE (AI).",
+      skillsAcquired: ["Junior Software Developer (JSD)", "Python & C Programming", "Web Development Basics", "Database & SQL", "Software Lab Practicals"]
     },
     {
       period: "August 2024",
