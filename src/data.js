@@ -27,7 +27,7 @@ export const personalData = {
   },
 
   about: {
-    title: "INSIDE MY HEAD",
+    title: "PORTFOLIO",
     subtitle: "A first-year explorer with a hunger for artificial intelligence and expressive web experiences.",
     batch: "2026–2030",
     photo: "/hena-photo.jpg",
