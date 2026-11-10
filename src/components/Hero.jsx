@@ -1,38 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { personalData } from '../data';
 import TwinklingStars from './TwinklingStars';
 import VectorBirds from './VectorBirds';
 import { motion } from 'framer-motion';
-
-const FONT_OPTIONS = [
-  { id: 'pinyon', name: 'Pinyon Script', className: 'font-pinyon', letterSpacing: 'tracking-normal' },
-  { id: 'italiana', name: 'Italiana', className: 'font-display', letterSpacing: 'tracking-widest' },
-  { id: 'syne', name: 'Syne', className: 'font-syne font-bold', letterSpacing: 'tracking-wider' },
-  { id: 'cinzel', name: 'Cinzel', className: 'font-cinzel font-semibold', letterSpacing: 'tracking-widest' },
-  { id: 'space', name: 'Space Grotesk', className: 'font-space font-bold', letterSpacing: 'tracking-normal' },
-  { id: 'condensed', name: 'Barlow', className: 'font-condensed font-extrabold', letterSpacing: 'tracking-wider' },
-];
+import { useFont, FONT_OPTIONS } from '../context/FontContext';
 
 export default function Hero({ activeSection = 'hello', scrollProgress = 0 }) {
   const [isNameHovered, setIsNameHovered] = useState(false);
-  const [selectedFont, setSelectedFont] = useState('pinyon');
-
-  useEffect(() => {
-    const saved = localStorage.getItem('hena_hero_font');
-    if (saved && FONT_OPTIONS.some((f) => f.id === saved)) {
-      setSelectedFont(saved);
-    } else {
-      setSelectedFont('pinyon');
-      localStorage.setItem('hena_hero_font', 'pinyon');
-    }
-  }, []);
-
-  const handleFontChange = (fontId) => {
-    setSelectedFont(fontId);
-    localStorage.setItem('hena_hero_font', fontId);
-  };
-
-  const currentFont = FONT_OPTIONS.find((f) => f.id === selectedFont) || FONT_OPTIONS[0];
+  const { selectedFont, currentFont, handleFontChange } = useFont();
 
   const nameLetters = personalData.name.split('');
 

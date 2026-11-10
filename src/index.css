@@ -2,7 +2,7 @@
 
 @theme {
   --font-pinyon: "Pinyon Script", cursive;
-  --font-display: "Pinyon Script", "Italiana", "Cinzel", cursive, serif;
+  --font-display: "Italiana", "Cinzel", cursive, serif;
   --font-cinzel: "Cinzel", serif;
   --font-syne: "Syne", sans-serif;
   --font-space: "Space Grotesk", sans-serif;
@@ -22,6 +22,54 @@
   --color-warm-yellow: #F7F08A;
   --color-warm-yellow-hover: #FFF89D;
   --color-ink: #261F36;
+}
+
+/* =============================================
+   GLOBAL FONT SWITCHER - driven by data-font attribute on <html>
+   When user picks a font, ALL text on the site changes.
+   ============================================= */
+
+html[data-font="pinyon"], html[data-font="pinyon"] * {
+  --site-font: "Pinyon Script", cursive;
+}
+html[data-font="italiana"], html[data-font="italiana"] * {
+  --site-font: "Italiana", serif;
+}
+html[data-font="syne"], html[data-font="syne"] * {
+  --site-font: "Syne", sans-serif;
+}
+html[data-font="cinzel"], html[data-font="cinzel"] * {
+  --site-font: "Cinzel", serif;
+}
+html[data-font="space"], html[data-font="space"] * {
+  --site-font: "Space Grotesk", sans-serif;
+}
+html[data-font="condensed"], html[data-font="condensed"] * {
+  --site-font: "Barlow Condensed", "Bebas Neue", sans-serif;
+}
+
+/* Apply the site-wide font to every element */
+html[data-font] h1,
+html[data-font] h2,
+html[data-font] h3,
+html[data-font] h4,
+html[data-font] h5,
+html[data-font] h6,
+html[data-font] p,
+html[data-font] span,
+html[data-font] a,
+html[data-font] button,
+html[data-font] li,
+html[data-font] label,
+html[data-font] div:not([class*="font-mono"]):not([class*="font-sans"]) {
+  font-family: var(--site-font) !important;
+}
+
+/* Keep monospace elements fixed (code, font pickers, timestamps) */
+html[data-font] [class*="font-mono"],
+html[data-font] code,
+html[data-font] pre {
+  font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, monospace !important;
 }
 
 /* Custom Film Grain Texture */

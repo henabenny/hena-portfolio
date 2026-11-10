@@ -3,6 +3,7 @@ import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+import { FontProvider } from './context/FontContext';
 import NoiseOverlay from './components/NoiseOverlay';
 import CustomCursor from './components/CustomCursor';
 import Navbar from './components/Navbar';
@@ -87,6 +88,7 @@ export default function App() {
   }, [loading]);
 
   return (
+    <FontProvider>
     <div ref={mainContainerRef} className="relative min-h-screen bg-[#6B5B95] text-[#F2EFEA] font-sans selection:bg-[#F7F08A] selection:text-[#261F36]">
       {/* Skip to Main Content Link for Keyboard and Screen Reader Accessibility */}
       <a
@@ -121,6 +123,7 @@ export default function App() {
       {/* Footer */}
       <Footer />
     </div>
+    </FontProvider>
   );
 }
 
