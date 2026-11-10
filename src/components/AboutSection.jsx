@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { personalData } from '../data';
 import { motion, useInView } from 'framer-motion';
-import { Sparkles, MapPin, GraduationCap, Brain, Terminal, Heart } from 'lucide-react';
+import { Sparkles, MapPin, Brain, Heart, ExternalLink } from 'lucide-react';
 
 function CounterItem({ label, value, suffix }) {
   const [count, setCount] = useState(0);
@@ -44,13 +44,75 @@ function CounterItem({ label, value, suffix }) {
   );
 }
 
+/* Scanline animation injected once */
+const ScanlineStyle = () => (
+  <style>{`
+    @keyframes scanline {
+      0%   { transform: translateY(-100%); }
+      100% { transform: translateY(100vh); }
+    }
+    @keyframes glitch-shift {
+      0%,100% { clip-path: inset(0 0 95% 0); transform: translate(-4px,0); }
+      20%      { clip-path: inset(10% 0 70% 0); transform: translate(4px,0); }
+      40%      { clip-path: inset(45% 0 40% 0); transform: translate(-2px,0); }
+      60%      { clip-path: inset(80% 0 5% 0);  transform: translate(3px,0); }
+      80%      { clip-path: inset(60% 0 25% 0); transform: translate(-3px,0); }
+    }
+    @keyframes noise-flicker {
+      0%,100% { opacity: 0.07; }
+      50%     { opacity: 0.12; }
+    }
+    .photo-bw {
+      filter: grayscale(100%) contrast(1.1) brightness(0.9);
+      transition: filter 0.6s ease;
+    }
+    .photo-card:hover .photo-bw {
+      filter: grayscale(0%) contrast(1) brightness(1);
+    }
+    .scanline-bar {
+      animation: scanline 3s linear infinite;
+      pointer-events: none;
+    }
+    .glitch-layer {
+      animation: glitch-shift 6s steps(1) infinite;
+      pointer-events: none;
+    }
+    .noise-layer {
+      animation: noise-flicker 0.15s steps(1) infinite;
+      pointer-events: none;
+    }
+    .photo-card:hover .scanline-bar,
+    .photo-card:hover .glitch-layer {
+      opacity: 0;
+    }
+    /* Slide-up overlay on hover */
+    .info-overlay {
+      transform: translateY(100%);
+      transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+    }
+    .photo-card:hover .info-overlay {
+      transform: translateY(0%);
+    }
+    /* Corner label pulse */
+    @keyframes corner-pulse {
+      0%,100% { opacity: 1; }
+      50%      { opacity: 0.4; }
+    }
+    .rec-dot { animation: corner-pulse 1.4s ease-in-out infinite; }
+  `}</style>
+);
+
 export default function AboutSection() {
+  const cardRef = useRef(null);
+
   return (
     <section
       id="about"
       className="relative min-h-screen w-full py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#453A62] via-[#2F2746] to-[#251E38] text-[#F2EFEA] overflow-hidden"
     >
-      {/* Subtle Mind Constellation Backdrop */}
+      <ScanlineStyle />
+
+      {/* Backdrop blobs */}
       <div className="absolute top-10 right-10 w-96 h-96 bg-[#8E7CC3]/10 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-10 left-10 w-96 h-96 bg-[#F7F08A]/5 rounded-full blur-3xl pointer-events-none" />
 
@@ -69,61 +131,128 @@ export default function AboutSection() {
           </p>
         </div>
 
-        {/* Two Column Grid: Left Hand-drawn Photo Frame, Right Bio & Details */}
+        {/* Two Column Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          {/* Left Column: Hand-drawn Illustrated Photo Frame */}
-          <div className="lg:col-span-5 flex flex-col items-center">
-            <div className="relative group w-full max-w-sm sm:max-w-md">
-              {/* Hand-drawn Polar Frame with Thick Border & Tape Stickers */}
-              <div className="relative bg-[#F2EFEA] text-[#261F36] p-4 sm:p-5 rounded-3xl border-4 border-[#261F36] shadow-[8px_8px_0px_#1B1526] transform -rotate-1 hover:rotate-0 transition-transform duration-300">
-                {/* Washi Tape Accent on Top */}
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-28 h-6 bg-[#F7F08A]/80 border-2 border-[#261F36] -rotate-3 z-20 flex items-center justify-center text-[10px] font-mono tracking-widest text-[#261F36]">
-                  STUDENT ID
-                </div>
 
-                {/* Inner Illustration Frame */}
-                <div className="w-full aspect-[4/5] rounded-2xl bg-gradient-to-b from-[#6B5B95] to-[#3B3355] border-2 border-[#261F36] overflow-hidden relative flex flex-col items-center justify-center p-6 text-center text-[#F2EFEA]">
-                  {/* Round Photo Frame of Hena */}
-                  <div className="relative w-36 h-36 sm:w-40 sm:h-40 mb-4 group/photo">
-                    {/* Outer Glow Ring */}
-                    <div className="w-full h-full rounded-full border-4 border-[#261F36] shadow-[0_0_0_4px_#B9A8F0,4px_4px_0px_#1B1526] overflow-hidden bg-[#261F36] relative">
-                      <img
-                        src={personalData.about.photo || "/hena-photo.jpg"}
-                        alt="Hena Benny"
-                        className="w-full h-full object-cover object-[50%_18%] group-hover/photo:scale-105 transition-transform duration-300"
-                        loading="lazy"
-                      />
-                    </div>
-                    {/* Sparkle sticker */}
-                    <span className="absolute -top-1 -right-1 text-2xl animate-bounce pointer-events-none select-none">✨</span>
+          {/* ── LEFT COLUMN: Full Square Photo Card ── */}
+          <div className="lg:col-span-5 flex flex-col items-center">
+            <motion.div
+              ref={cardRef}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="photo-card relative w-full max-w-sm sm:max-w-md group cursor-pointer"
+            >
+              {/* Outer shadow frame */}
+              <div className="relative rounded-2xl overflow-hidden shadow-[0_0_0_2px_#8E7CC3,8px_8px_0px_#1B1526] hover:shadow-[0_0_0_2px_#F7F08A,10px_10px_0px_#1B1526] transition-shadow duration-500">
+
+                {/* Square photo container */}
+                <div className="relative w-full aspect-square overflow-hidden bg-black">
+
+                  {/* ── Actual photo — B&W → Color on hover ── */}
+                  <img
+                    src={personalData.about.photo || '/hena-photo.jpg'}
+                    alt="Hena Benny"
+                    className="photo-bw w-full h-full object-cover object-top scale-105 group-hover:scale-100 transition-transform duration-700"
+                    loading="lazy"
+                  />
+
+                  {/* ── Film grain noise ── */}
+                  <div
+                    className="noise-layer absolute inset-0 mix-blend-overlay"
+                    style={{
+                      backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+                      backgroundRepeat: 'repeat',
+                      backgroundSize: '128px 128px',
+                    }}
+                  />
+
+                  {/* ── Scanline sweep ── */}
+                  <div
+                    className="scanline-bar absolute inset-x-0 h-10"
+                    style={{
+                      background: 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.04), transparent)',
+                      top: 0,
+                    }}
+                  />
+
+                  {/* ── Glitch ghost duplicate ── */}
+                  <img
+                    src={personalData.about.photo || '/hena-photo.jpg'}
+                    alt=""
+                    aria-hidden="true"
+                    className="glitch-layer photo-bw absolute inset-0 w-full h-full object-cover object-top opacity-60 mix-blend-screen"
+                  />
+
+                  {/* ── TOP-LEFT: REC dot ── */}
+                  <div className="absolute top-3 left-3 flex items-center gap-1.5 bg-black/50 backdrop-blur-sm px-2 py-1 rounded-full border border-white/10 z-20">
+                    <span className="rec-dot inline-block w-2 h-2 rounded-full bg-red-500" />
+                    <span className="font-mono text-[9px] text-white/70 uppercase tracking-widest">REC</span>
                   </div>
 
-                  <h3 className="font-pinyon text-3xl sm:text-4xl font-normal text-[#F7F08A] tracking-normal">
-                    Hena Benny
-                  </h3>
-                  <p className="font-condensed text-xs sm:text-sm text-[#D8CCE6] uppercase tracking-wider mt-0.5">
-                    B.Tech CSE (AI) • {personalData.about.batch || "2026–2030"}
-                  </p>
-                  <p className="font-sans text-[11px] text-[#B9A8F0] mt-1 flex items-center gap-1 justify-center">
-                    <MapPin size={12} /> Thejus College, Thrissur
-                  </p>
+                  {/* ── TOP-RIGHT: Student ID badge ── */}
+                  <div className="absolute top-3 right-3 bg-[#F7F08A] text-[#261F36] font-mono text-[9px] font-bold uppercase tracking-widest px-2 py-1 rounded z-20">
+                    STUDENT ID
+                  </div>
+
+                  {/* ── BOTTOM: slide-up info overlay ── */}
+                  <div className="info-overlay absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent pt-10 pb-5 px-5 z-20">
+                    <p className="font-pinyon text-3xl text-white mb-0.5">Hena Benny</p>
+                    <p className="font-mono text-[10px] text-white/60 uppercase tracking-widest">
+                      B.Tech CSE (AI) · {personalData.about.batch}
+                    </p>
+                    <div className="flex items-center gap-1 mt-1">
+                      <MapPin size={10} className="text-[#F7F08A]" />
+                      <span className="font-mono text-[9px] text-[#F7F08A] uppercase tracking-widest">
+                        Thejus College, Thrissur
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* ── Vignette ── */}
+                  <div
+                    className="absolute inset-0 pointer-events-none z-10"
+                    style={{
+                      background:
+                        'radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.55) 100%)',
+                    }}
+                  />
+
+                  {/* ── Hover tint wash ── */}
+                  <div className="absolute inset-0 bg-[#8E7CC3]/0 group-hover:bg-[#8E7CC3]/5 transition-all duration-500 z-10 pointer-events-none" />
                 </div>
 
-                {/* Hand-written Label below photo */}
-                <div className="pt-3 px-1 flex items-center justify-between text-[#261F36] font-mono text-xs">
-                  <span className="font-bold tracking-wider">THESIS: LEARNING AI</span>
-                  <span className="text-[11px] bg-[#B9A8F0]/30 px-2 py-0.5 rounded font-sans font-semibold">1st YEAR</span>
+                {/* ── Bottom strip ── */}
+                <div className="flex items-center justify-between bg-[#0D0A14] border-t border-white/5 px-4 py-2.5">
+                  <span className="font-mono text-[9px] uppercase tracking-widest text-white/30">
+                    THESIS: LEARNING AI
+                  </span>
+                  <span className="font-mono text-[9px] uppercase tracking-widest text-[#F7F08A]/70">
+                    1st YEAR · 2026
+                  </span>
                 </div>
               </div>
 
-              {/* Floating Sticker: "Made with passion in Thrissur" */}
-              <div className="absolute -bottom-4 -right-3 sm:-right-5 bg-[#F7F08A] text-[#261F36] px-3 py-1.5 rounded-xl border-2 border-[#261F36] shadow-[3px_3px_0px_#261F36] font-condensed font-bold text-xs uppercase flex items-center gap-1.5 rotate-3 hover:rotate-0 transition-transform">
-                <Heart size={14} className="fill-[#261F36]" /> Thrissur, Kerala
-              </div>
-            </div>
+              {/* Floating Kerala sticker */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.7, rotate: 8 }}
+                whileInView={{ opacity: 1, scale: 1, rotate: 3 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5, type: 'spring', stiffness: 300 }}
+                className="absolute -bottom-4 -right-4 bg-[#F7F08A] text-[#261F36] px-3 py-1.5 rounded-xl border-2 border-[#261F36] shadow-[3px_3px_0px_#261F36] font-condensed font-bold text-xs uppercase flex items-center gap-1.5 hover:rotate-0 hover:scale-105 transition-transform cursor-pointer"
+              >
+                <Heart size={12} className="fill-[#261F36]" /> Thrissur, Kerala
+              </motion.div>
+
+              {/* Hover hint at bottom left */}
+              <p className="mt-3 text-center font-mono text-[9px] text-[#8E7CC3]/60 uppercase tracking-widest select-none">
+                hover to reveal colour
+              </p>
+            </motion.div>
           </div>
 
-          {/* Right Column: Bio Narrative & Facts */}
+          {/* ── RIGHT COLUMN: Bio Narrative & Facts ── */}
           <div className="lg:col-span-7 flex flex-col gap-6">
             <div className="space-y-4 text-sm sm:text-base text-[#D8CCE6] leading-relaxed">
               {personalData.about.bioParagraphs.map((para, i) => (
@@ -187,4 +316,3 @@ export default function AboutSection() {
     </section>
   );
 }
-
