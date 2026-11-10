@@ -29,14 +29,16 @@ export const personalData = {
   about: {
     title: "INSIDE MY HEAD",
     subtitle: "A first-year explorer with a hunger for artificial intelligence and expressive web experiences.",
+    batch: "2026–2030",
     bioParagraphs: [
-      "Hey! I'm Hena Benny, a first-year Computer Science and Engineering (Artificial Intelligence) undergraduate at Thejus College of Engineering in Thrissur, Kerala.",
+      "Hey! I'm Hena Benny, a first-year Computer Science and Engineering (Artificial Intelligence) undergraduate at Thejus College of Engineering in Thrissur, Kerala (Batch 2026–2030).",
       "Having come from a VHSE Computer Science (Junior Software Developer - JSD) background, I built a strong hands-on foundation in software engineering, practical coding, and web technologies right from vocational higher secondary school.",
       "Now in B.Tech CSE (AI), I spend my days mastering data structures, exploring neural network basics, experimenting with modern web tools, and questioning how software can feel more intuitive, playful, and alive.",
       "When I step away from my IDE, you'll probably find me sketching UI concepts in Figma, sipping hot chai, listening to indie playlists, or brainstorming hackathon ideas with friends."
     ],
     detailsList: [
       { label: "Degree", value: "B.Tech CSE (Artificial Intelligence)" },
+      { label: "Batch", value: "2026 — 2030 (1st Year)" },
       { label: "Institution", value: "Thejus College of Engineering, Thrissur" },
       { label: "Foundation", value: "VHSE Computer Science (JSD)" },
       { label: "Location", value: "Kerala, India 🌴" },
@@ -181,7 +183,7 @@ export const personalData = {
 
   journey: [
     {
-      period: "2022 — 2024",
+      period: "2024 — 2026",
       title: "VHSE Computer Science (Junior Software Developer - JSD)",
       organization: "Vocational Higher Secondary Education (VHSE), Kerala",
       badge: "The Foundation",
@@ -189,35 +191,35 @@ export const personalData = {
       skillsAcquired: ["Junior Software Developer (JSD)", "Python & C Programming", "Web Development Basics", "Database & SQL", "Software Lab Practicals"]
     },
     {
-      period: "August 2024",
+      period: "2026",
       title: "Stepped into B.Tech CSE (Artificial Intelligence)",
       organization: "Thejus College of Engineering, Thrissur, Kerala",
-      badge: "Freshman Year",
-      description: "Embarked on the B.Tech CSE (AI) undergraduate journey. Started building strong foundations in C programming, linear algebra, discrete mathematics, and computational thinking.",
+      badge: "Freshman Year (2026–2030)",
+      description: "Embarked on the B.Tech CSE (AI) undergraduate journey (Batch 2026–2030). Started building strong foundations in C programming, linear algebra, discrete mathematics, and computational thinking.",
       skillsAcquired: ["C Programming", "Discrete Mathematics", "Data Structures", "Engineering Mechanics"]
     },
     {
-      period: "Late 2024 — Early 2025",
+      period: "2026 — Present",
       title: "Tech Communities & First Campus Hackathon",
       organization: "IEDC / Campus Developer Club",
       badge: "Community & Code",
-      description: "Joined college innovation and developer societies. Participated in my first 24-hour hackathon, working through the night to build a prototype campus information system with a multi-disciplinary team.",
+      description: "Joined college innovation and developer societies. Participated in campus hackathons, working through the night to build prototype information systems with a multi-disciplinary team.",
       skillsAcquired: ["Git team workflows", "Rapid prototyping", "Public pitching", "Full stack basics"]
     },
     {
-      period: "2025 — Present (2026)",
+      period: "2026 — Active",
       title: "Diving into Machine Learning & Creative Web",
       organization: "Self-driven Labs & Academic Projects",
       badge: "Active Journey",
-      description: "Actively studying neural networks, computer vision with OpenCV, and pairing backend intelligence with sleek, playful React interfaces. Currently seeking summer 2026 internships and collaborative open-source ventures.",
+      description: "Actively studying neural networks, computer vision with OpenCV, and pairing backend intelligence with sleek, playful React interfaces. Currently seeking summer internships and collaborative open-source ventures.",
       skillsAcquired: ["OpenCV", "React.js", "Tailwind CSS", "Prompt Engineering", "Lenis & GSAP"]
     },
     {
-      period: "Looking Forward (2026 — 2028)",
+      period: "Looking Forward (2026 — 2030)",
       title: "Aspiring AI Engineer & Product Thinker",
       organization: "Future Roadmap",
       badge: "Next Horizon",
-      description: "Working towards mastering deep learning architectures, contributing to prominent AI open-source libraries, and creating technology that brings genuine wonder to users.",
+      description: "Working towards mastering deep learning architectures, contributing to prominent AI open-source libraries, and graduating as a skilled engineer building technology that brings genuine wonder.",
       skillsAcquired: ["Deep Learning at scale", "Distributed Systems", "AI Product Architecture"]
     }
   ],

@@ -113,7 +113,7 @@ export default function AboutSection() {
                     Hena Benny
                   </h3>
                   <p className="font-condensed text-xs sm:text-sm text-[#D8CCE6] uppercase tracking-wider mt-0.5">
-                    B.Tech CSE (AI) • 2024–2028
+                    B.Tech CSE (AI) • {personalData.about.batch || "2026–2030"}
                   </p>
                   <p className="font-sans text-[11px] text-[#B9A8F0] mt-1 flex items-center gap-1 justify-center">
                     <MapPin size={12} /> Thejus College, Thrissur
