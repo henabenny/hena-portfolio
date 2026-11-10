@@ -30,6 +30,7 @@ export const personalData = {
     title: "INSIDE MY HEAD",
     subtitle: "A first-year explorer with a hunger for artificial intelligence and expressive web experiences.",
     batch: "2026–2030",
+    photo: "/hena-photo.jpg",
     bioParagraphs: [
       "Hey! I'm Hena Benny, a first-year Computer Science and Engineering (Artificial Intelligence) undergraduate at Thejus College of Engineering in Thrissur, Kerala (Batch 2026–2030).",
       "Having come from a VHSE Computer Science (Junior Software Developer - JSD) background, I built a strong hands-on foundation in software engineering, practical coding, and web technologies right from vocational higher secondary school.",

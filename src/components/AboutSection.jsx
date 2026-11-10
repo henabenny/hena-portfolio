@@ -83,30 +83,19 @@ export default function AboutSection() {
 
                 {/* Inner Illustration Frame */}
                 <div className="w-full aspect-[4/5] rounded-2xl bg-gradient-to-b from-[#6B5B95] to-[#3B3355] border-2 border-[#261F36] overflow-hidden relative flex flex-col items-center justify-center p-6 text-center text-[#F2EFEA]">
-                  {/* Stylized Avatar Illustration */}
-                  <div className="relative w-36 h-36 mb-4">
-                    <svg viewBox="0 0 160 160" fill="none" className="w-full h-full drop-shadow-md">
-                      {/* Aura / Halo */}
-                      <circle cx="80" cy="80" r="70" fill="#B9A8F0" opacity="0.25" />
-                      {/* Avatar Head */}
-                      <circle cx="80" cy="75" r="42" fill="#E8DDF2" stroke="#261F36" strokeWidth="4" />
-                      {/* Hair */}
-                      <path
-                        d="M44 65 C44 32 116 32 116 65 C116 80 110 95 105 105 C100 85 92 65 80 65 C68 65 60 85 55 105 C50 95 44 80 44 65 Z"
-                        fill="#261F36"
+                  {/* Round Photo Frame of Hena */}
+                  <div className="relative w-36 h-36 sm:w-40 sm:h-40 mb-4 group/photo">
+                    {/* Outer Glow Ring */}
+                    <div className="w-full h-full rounded-full border-4 border-[#261F36] shadow-[0_0_0_4px_#B9A8F0,4px_4px_0px_#1B1526] overflow-hidden bg-[#261F36] relative">
+                      <img
+                        src={personalData.about.photo || "/hena-photo.jpg"}
+                        alt="Hena Benny"
+                        className="w-full h-full object-cover object-[50%_18%] group-hover/photo:scale-105 transition-transform duration-300"
+                        loading="lazy"
                       />
-                      {/* Cute glasses */}
-                      <circle cx="68" cy="76" r="10" stroke="#261F36" strokeWidth="3" fill="none" />
-                      <circle cx="92" cy="76" r="10" stroke="#261F36" strokeWidth="3" fill="none" />
-                      <line x1="78" y1="76" x2="82" y2="76" stroke="#261F36" strokeWidth="3" />
-                      {/* Smile */}
-                      <path d="M72 94 Q80 100 88 94" stroke="#261F36" strokeWidth="3" strokeLinecap="round" fill="none" />
-                      {/* Cheeks */}
-                      <circle cx="60" cy="88" r="4" fill="#D997A8" />
-                      <circle cx="100" cy="88" r="4" fill="#D997A8" />
-                    </svg>
+                    </div>
                     {/* Sparkle sticker */}
-                    <span className="absolute -top-1 -right-1 text-xl animate-bounce">✨</span>
+                    <span className="absolute -top-1 -right-1 text-2xl animate-bounce pointer-events-none select-none">✨</span>
                   </div>
 
                   <h3 className="font-display text-xl sm:text-2xl font-bold text-[#F7F08A] tracking-wider uppercase">
