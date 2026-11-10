@@ -5,11 +5,11 @@ import VectorBirds from './VectorBirds';
 import { motion } from 'framer-motion';
 
 const FONT_OPTIONS = [
-  { id: 'italiana', name: 'Italiana (Editorial)', className: 'font-display', letterSpacing: 'tracking-[0.08em]' },
-  { id: 'syne', name: 'Syne (Modern Tech)', className: 'font-syne font-bold', letterSpacing: 'tracking-[0.03em]' },
-  { id: 'cinzel', name: 'Cinzel (Architectural)', className: 'font-cinzel font-semibold', letterSpacing: 'tracking-[0.06em]' },
-  { id: 'space', name: 'Space Grotesk (AI Bold)', className: 'font-space font-bold', letterSpacing: 'tracking-[0.02em]' },
-  { id: 'condensed', name: 'Barlow (Condensed)', className: 'font-condensed font-extrabold', letterSpacing: 'tracking-[0.04em]' },
+  { id: 'italiana', name: 'Italiana (Editorial)', className: 'font-display', letterSpacing: 'tracking-widest' },
+  { id: 'syne', name: 'Syne (Modern Tech)', className: 'font-syne font-bold', letterSpacing: 'tracking-wider' },
+  { id: 'cinzel', name: 'Cinzel (Architectural)', className: 'font-cinzel font-semibold', letterSpacing: 'tracking-widest' },
+  { id: 'space', name: 'Space Grotesk (AI Bold)', className: 'font-space font-bold', letterSpacing: 'tracking-normal' },
+  { id: 'condensed', name: 'Barlow (Condensed)', className: 'font-condensed font-extrabold', letterSpacing: 'tracking-wider' },
 ];
 
 export default function Hero({ activeSection = 'hello', scrollProgress = 0 }) {
@@ -116,7 +116,7 @@ export default function Hero({ activeSection = 'hello', scrollProgress = 0 }) {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className={`${currentFont.className} ${currentFont.letterSpacing} text-4xl sm:text-6xl md:text-7xl lg:text-[5.4rem] xl:text-[6rem] text-[#F2EFEA] uppercase leading-[1.08] drop-shadow-sm flex items-center justify-center flex-wrap`}
+            className={`${currentFont.className} ${currentFont.letterSpacing} text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-[#F2EFEA] uppercase leading-tight drop-shadow-sm flex items-center justify-center flex-wrap`}
           >
             {nameLetters.map((char, index) => (
               <motion.span
