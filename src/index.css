@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Italiana", "Cinzel", "Cormorant Garamond", serif;
+  --font-pinyon: "Pinyon Script", cursive;
+  --font-display: "Pinyon Script", "Italiana", "Cinzel", cursive, serif;
   --font-cinzel: "Cinzel", serif;
   --font-syne: "Syne", sans-serif;
   --font-space: "Space Grotesk", sans-serif;

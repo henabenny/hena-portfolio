@@ -96,7 +96,7 @@ export default function ContactSection() {
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F7F08A]/15 border border-[#F7F08A]/30 text-[#F7F08A] font-condensed tracking-widest text-xs uppercase mb-3">
             <MessageSquare size={14} /> LEVEL 05 : SIGNAL TRANSMISSION
           </span>
-          <h2 className="font-display text-5xl sm:text-6xl md:text-7xl font-bold uppercase tracking-tight text-[#F2EFEA]">
+          <h2 className="font-pinyon text-5xl sm:text-6xl md:text-7xl font-normal tracking-wide text-[#F2EFEA]">
             {personalData.contact.heading}
           </h2>
           <div className="w-20 h-1.5 bg-[#F7F08A] my-4 rounded-full" />

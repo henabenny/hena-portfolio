@@ -4,7 +4,7 @@
  */
 
 export const personalData = {
-  name: "HENA BENNY",
+  name: "Hena Benny",
   firstName: "Hena",
   lastName: "Benny",
   pronouns: "she/her",
@@ -15,10 +15,10 @@ export const personalData = {
   tagline: "First-year CSE (AI) student. I learn, build & experiment with ideas that you wish existed.",
   
   heroWords: {
-    left: "DESIGNING",
-    right: "CODING",
-    subLeft: "CURIOUS MIND",
-    subRight: "AI EXPERIMENTS"
+    left: "Designing",
+    right: "Coding",
+    subLeft: "Curious Mind",
+    subRight: "AI Experiments"
   },
   
   figmaSelection: {
@@ -27,7 +27,7 @@ export const personalData = {
   },
 
   about: {
-    title: "PORTFOLIO",
+    title: "Portfolio",
     subtitle: "A first-year explorer with a hunger for artificial intelligence and expressive web experiences.",
     batch: "2026–2030",
     photo: "/hena-photo.jpg",
@@ -226,7 +226,7 @@ export const personalData = {
   ],
 
   contact: {
-    heading: "LET'S TALK",
+    heading: "Let's Talk",
     subheading: "Got a cool project idea, an internship opportunity, or just want to chat about AI and design over chai? My inbox is always open!",
     email: "henabenny.dev@gmail.com",
     collegeEmail: "hena.benny@thejus.ac.in",

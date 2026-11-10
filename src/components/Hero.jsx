@@ -5,21 +5,25 @@ import VectorBirds from './VectorBirds';
 import { motion } from 'framer-motion';
 
 const FONT_OPTIONS = [
-  { id: 'italiana', name: 'Italiana (Editorial)', className: 'font-display', letterSpacing: 'tracking-widest' },
-  { id: 'syne', name: 'Syne (Modern Tech)', className: 'font-syne font-bold', letterSpacing: 'tracking-wider' },
-  { id: 'cinzel', name: 'Cinzel (Architectural)', className: 'font-cinzel font-semibold', letterSpacing: 'tracking-widest' },
-  { id: 'space', name: 'Space Grotesk (AI Bold)', className: 'font-space font-bold', letterSpacing: 'tracking-normal' },
-  { id: 'condensed', name: 'Barlow (Condensed)', className: 'font-condensed font-extrabold', letterSpacing: 'tracking-wider' },
+  { id: 'pinyon', name: 'Pinyon Script', className: 'font-pinyon', letterSpacing: 'tracking-normal' },
+  { id: 'italiana', name: 'Italiana', className: 'font-display', letterSpacing: 'tracking-widest' },
+  { id: 'syne', name: 'Syne', className: 'font-syne font-bold', letterSpacing: 'tracking-wider' },
+  { id: 'cinzel', name: 'Cinzel', className: 'font-cinzel font-semibold', letterSpacing: 'tracking-widest' },
+  { id: 'space', name: 'Space Grotesk', className: 'font-space font-bold', letterSpacing: 'tracking-normal' },
+  { id: 'condensed', name: 'Barlow', className: 'font-condensed font-extrabold', letterSpacing: 'tracking-wider' },
 ];
 
 export default function Hero({ activeSection = 'hello', scrollProgress = 0 }) {
   const [isNameHovered, setIsNameHovered] = useState(false);
-  const [selectedFont, setSelectedFont] = useState('italiana');
+  const [selectedFont, setSelectedFont] = useState('pinyon');
 
   useEffect(() => {
     const saved = localStorage.getItem('hena_hero_font');
     if (saved && FONT_OPTIONS.some((f) => f.id === saved)) {
       setSelectedFont(saved);
+    } else {
+      setSelectedFont('pinyon');
+      localStorage.setItem('hena_hero_font', 'pinyon');
     }
   }, []);
 
@@ -72,9 +76,9 @@ export default function Hero({ activeSection = 'hello', scrollProgress = 0 }) {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="font-condensed tracking-[0.28em] text-xs sm:text-sm text-[#D8CCE6] uppercase mb-2"
+          className="font-pinyon text-2xl sm:text-3xl text-[#D8CCE6] mb-1 tracking-wide"
         >
-          INSIDE THE MIND OF
+          Inside the mind of
         </motion.p>
 
         {/* Huge Name with Figma Selection Box on Hover */}
@@ -116,7 +120,11 @@ export default function Hero({ activeSection = 'hello', scrollProgress = 0 }) {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className={`${currentFont.className} ${currentFont.letterSpacing} text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-[#F2EFEA] uppercase leading-tight drop-shadow-sm flex items-center justify-center flex-wrap`}
+            className={`${currentFont.className} ${currentFont.letterSpacing} ${
+              selectedFont === 'pinyon'
+                ? 'text-6xl sm:text-7xl md:text-8xl lg:text-9xl py-2 font-normal'
+                : 'text-4xl sm:text-6xl md:text-7xl lg:text-8xl uppercase leading-tight font-bold'
+            } text-[#F2EFEA] drop-shadow-sm flex items-center justify-center flex-wrap`}
           >
             {nameLetters.map((char, index) => (
               <motion.span
@@ -131,20 +139,20 @@ export default function Hero({ activeSection = 'hello', scrollProgress = 0 }) {
         </div>
 
         {/* Faded Side Words Below Name (Parallax Aesthetic) */}
-        <div className="w-full max-w-3xl flex items-center justify-between px-4 sm:px-10 mt-1 text-[#B9A8F0]/40 font-display italic text-base sm:text-xl md:text-2xl tracking-widest uppercase">
+        <div className="w-full max-w-3xl flex items-center justify-between px-4 sm:px-10 mt-1 text-[#B9A8F0]/50 font-pinyon text-2xl sm:text-3xl md:text-4xl tracking-wider">
           <motion.span
             initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 0.55, x: 0 }}
+            animate={{ opacity: 0.6, x: 0 }}
             transition={{ duration: 1, delay: 0.6 }}
-            className="hover:opacity-90 transition-opacity"
+            className="hover:opacity-95 transition-opacity"
           >
             {personalData.heroWords.left}
           </motion.span>
           <motion.span
             initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 0.55, x: 0 }}
+            animate={{ opacity: 0.6, x: 0 }}
             transition={{ duration: 1, delay: 0.6 }}
-            className="hover:opacity-90 transition-opacity"
+            className="hover:opacity-95 transition-opacity"
           >
             {personalData.heroWords.right}
           </motion.span>
@@ -166,7 +174,7 @@ export default function Hero({ activeSection = 'hello', scrollProgress = 0 }) {
                   : 'text-[#D8CCE6] hover:text-[#F2EFEA] hover:bg-[#3B3355]'
               }`}
             >
-              {f.id.charAt(0).toUpperCase() + f.id.slice(1)}
+              {f.name}
             </button>
           ))}
         </div>

@@ -60,7 +60,7 @@ export default function AboutSection() {
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#B9A8F0]/20 border border-[#B9A8F0]/40 text-[#F7F08A] font-condensed tracking-widest text-xs uppercase mb-3">
             <Brain size={14} /> LEVEL 01 : COGNITION
           </span>
-          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold uppercase tracking-tight text-[#F2EFEA]">
+          <h2 className="font-pinyon text-5xl sm:text-6xl md:text-7xl font-normal tracking-wide text-[#F2EFEA]">
             {personalData.about.title}
           </h2>
           <div className="w-16 h-1 bg-[#F7F08A] my-3 rounded-full" />
@@ -98,7 +98,7 @@ export default function AboutSection() {
                     <span className="absolute -top-1 -right-1 text-2xl animate-bounce pointer-events-none select-none">✨</span>
                   </div>
 
-                  <h3 className="font-display text-xl sm:text-2xl font-bold text-[#F7F08A] tracking-wider uppercase">
+                  <h3 className="font-pinyon text-3xl sm:text-4xl font-normal text-[#F7F08A] tracking-normal">
                     Hena Benny
                   </h3>
                   <p className="font-condensed text-xs sm:text-sm text-[#D8CCE6] uppercase tracking-wider mt-0.5">

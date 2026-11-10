@@ -29,7 +29,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
         {/* Left: Branding & College */}
         <div>
-          <div className="font-display font-bold text-lg text-[#F2EFEA] tracking-wider uppercase">
+          <div className="font-pinyon text-2xl text-[#F2EFEA]">
             {personalData.name}
           </div>
           <p className="font-condensed text-xs uppercase tracking-wider text-[#B9A8F0] mt-0.5">

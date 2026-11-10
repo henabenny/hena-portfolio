@@ -156,8 +156,8 @@ export default function ProjectsSection() {
           <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#B9A8F0]/15 border border-[#B9A8F0]/30 text-[#F7F08A] font-condensed tracking-widest text-xs uppercase mb-3">
             <Layers size={14} /> LEVEL 03 : LAB EXPERIMENTS
           </span>
-          <h2 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold uppercase tracking-tight text-[#F2EFEA]">
-            FEATURED CREATIONS
+          <h2 className="font-pinyon text-5xl sm:text-6xl md:text-7xl font-normal tracking-wide text-[#F2EFEA]">
+            Featured Creations
           </h2>
           <div className="w-16 h-1 bg-[#F7F08A] my-3 rounded-full" />
           <p className="font-condensed text-base sm:text-lg text-[#D8CCE6] max-w-xl">

@@ -45,7 +45,7 @@ export default function Navbar({ activeSection = 'hero' }) {
           <a
             href="#hero"
             onClick={(e) => handleNavClick(e, '#hero')}
-            className="group font-condensed font-bold tracking-widest text-lg sm:text-xl text-[#F2EFEA] uppercase hover:text-[#F7F08A] transition-colors flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7F08A] rounded"
+            className="group font-pinyon text-2xl sm:text-3xl text-[#F2EFEA] hover:text-[#F7F08A] transition-colors flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#F7F08A] rounded"
           >
             <span>{personalData.name}</span>
           </a>
