@@ -1,7 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Bodoni Moda", "Italiana", serif;
+  --font-display: "Italiana", "Cinzel", "Cormorant Garamond", serif;
+  --font-cinzel: "Cinzel", serif;
+  --font-syne: "Syne", sans-serif;
+  --font-space: "Space Grotesk", sans-serif;
   --font-condensed: "Barlow Condensed", "Bebas Neue", sans-serif;
   --font-bebas: "Bebas Neue", sans-serif;
   --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
